@@ -15,7 +15,9 @@ public class Main extends Application {
 
   private Parent liburuUI;
   private Parent xehetasunUI;
-  public Stage stage;
+  private Stage stage;
+  private Scene sceneLiburuak;
+  private Scene sceneXehetasunak;
   public LiburuKud LiburuKud;
   public XehetasunakKud xehetasunakKud;
   public Label label;
@@ -26,14 +28,27 @@ public class Main extends Application {
   @Override
   public void start(Stage primaryStage) throws Exception {
 
-    this.stage = primaryStage;
-    this.pantailakKargatu();
+    stage = primaryStage;
+    pantailakKargatu();
+
+    stage.setScene(sceneLiburuak);
+    stage.show();
+  }
+
+/*  public void changeScene(String fxml) throws IOException {
+      Parent pane = FXMLLoader.load(getClass().getResource(fxml));
+
+      stage.getScene().setRoot(pane);
+  }*/
+
+  public void mainErakutsi(){
+    stage.setScene(sceneXehetasunak);
+    stage.show();
+  }
+
+  public void xehetasunakErakutsi(){
 
 
-
-    this.stage.setTitle("Argazki Backup");
-    this.stage.setScene(new Scene(liburuUI, 450, 275));
-    this.stage.show();
   }
 
 
@@ -43,24 +58,17 @@ public class Main extends Application {
     liburuUI = (Parent) loaderLiburu.load();
     LiburuKud = loaderLiburu.getController();
     LiburuKud.setMainApp(this);
+    sceneLiburuak=new Scene(liburuUI);
 
 
     FXMLLoader loaderXehetasun = new FXMLLoader(getClass().getResource("/Xehetasunak.fxml"));
     xehetasunUI = (Parent) loaderXehetasun.load();
     xehetasunakKud= loaderXehetasun.getController();
     xehetasunakKud.setMainApp(this);
+    sceneXehetasunak=new Scene(xehetasunUI);
 
   }
 
-  public void xehetasunakErakutsi() {
-    stage.setScene(new Scene(xehetasunUI));
-    stage.show();
-  }
-
-  public void liburuaErakutsi() {
-    stage.setScene(new Scene(liburuUI));
-    stage.show();
-  }
 
 
   public static void main(String[] args) {

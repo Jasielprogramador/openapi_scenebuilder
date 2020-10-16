@@ -20,6 +20,8 @@ public class LiburuKud implements Initializable {
 
     // Reference to the main application.
     private Main mainApp;
+    private Sarea sarea;
+
 
     @FXML
     public ComboBox comboZerbitzua;
@@ -32,8 +34,7 @@ public class LiburuKud implements Initializable {
     @FXML
     public void onClick(ActionEvent actionEvent) throws IOException {
 
-        mainApp.xehetasunakErakutsi();
-
+        mainApp.mainErakutsi();
     }
 
     @Override
@@ -47,6 +48,7 @@ public class LiburuKud implements Initializable {
                 new Book("9781491920497","Blockchain: Blueprint for a New Economy"));
 
         comboZerbitzua.setItems(books);
+        comboZerbitzua.getSelectionModel().selectFirst();
         comboZerbitzua.setEditable(false);
 
         comboZerbitzua.setConverter(new StringConverter<Book>() {
@@ -55,6 +57,7 @@ public class LiburuKud implements Initializable {
                 if (book==null)
                     return "";
                 return book.getTitle();
+
             }
 
             @Override
@@ -63,6 +66,14 @@ public class LiburuKud implements Initializable {
             }
         });
     }
+
+    public Book liburuaLortu() throws IOException {
+        Book book=(Book)comboZerbitzua.getValue();
+        Book liburua=sarea.readFromUrl(book.getIsbn());
+        return liburua;
+    }
+
+
 
 
 

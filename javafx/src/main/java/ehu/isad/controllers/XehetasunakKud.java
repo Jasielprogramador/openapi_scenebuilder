@@ -11,6 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -28,8 +29,10 @@ public class XehetasunakKud implements Initializable {
     private Sarea sarea;
 
 
+
     @FXML
     private Label lblIzenburua;
+
 
     @FXML
     private Label lblArgitaletxea;
@@ -45,7 +48,7 @@ public class XehetasunakKud implements Initializable {
 
     @FXML
     public void onClick(ActionEvent actionEvent) throws IOException {
-        mainApp.liburuaErakutsi();
+        //Book book=
     }
 
 
@@ -61,29 +64,12 @@ public class XehetasunakKud implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
-        Parent liburuUI;
-        LiburuKud liburuKud;
-
-        //Book book=(Book) mainApp.LiburuKud.comboZerbitzua.getValue();
-        Book liburua= null;
-
-
-        /*try {
-            liburua = sarea.readFromUrl(book.getIsbn());
+        try {
+            Book liburua=mainApp.LiburuKud.liburuaLortu();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        lblArgitaletxea.setText(liburua.getDetails().getPublishers()[0]);
-        lblIzenburua.setText(liburua.getTitle());
-        lblOrriKop.setText(Integer.toString(liburua.getDetails().getNumber_of_pages()));
-
-        try {
-            imgIrudia.setImage(this.createImage(liburua.getThumbnail_url()));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
 
     }
 
