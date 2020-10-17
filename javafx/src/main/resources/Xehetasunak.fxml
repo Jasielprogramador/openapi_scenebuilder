@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="532.0" prefWidth="847.0" styleClass="background" stylesheets="@bootstrap3.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ehu.isad.controllers.XehetasunakKud">
+<AnchorPane prefHeight="582.0" prefWidth="908.0" styleClass="background" stylesheets="@bootstrap3.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ehu.isad.controllers.XehetasunakKud">
    <children>
       <Label graphicTextGap="1.0" layoutX="271.0" layoutY="25.0" prefHeight="65.0" prefWidth="306.0" text="Liburuaren xehetasunak">
          <font>
@@ -14,13 +14,13 @@
          </font>
       </Label>
       <Label layoutX="81.0" layoutY="142.0" text="Izenburua:" />
-      <Label fx:id="lblIzenburua" layoutX="200.0" layoutY="131.0" prefHeight="38.0" prefWidth="385.0" />
+      <Label fx:id="lblIzenburua" layoutX="194.0" layoutY="136.0" prefHeight="28.0" prefWidth="629.0" />
       <Label layoutX="74.0" layoutY="203.0" text="Argitaletxea:" />
-      <Label fx:id="lblArgitaletxea" layoutX="194.0" layoutY="197.0" prefHeight="28.0" prefWidth="306.0" />
+      <Label fx:id="lblArgitaletxea" layoutX="194.0" layoutY="197.0" prefHeight="28.0" prefWidth="629.0" />
       <Label layoutX="74.0" layoutY="275.0" text="Orri kopurua:" />
       <Label fx:id="lblOrriKop" layoutX="207.0" layoutY="275.0" prefHeight="16.0" prefWidth="281.0" />
-      <Label layoutX="97.0" layoutY="354.0" text="Irudia:" />
-      <ImageView fx:id="imgIrudia" fitHeight="100.0" fitWidth="134.0" layoutX="189.0" layoutY="320.0" pickOnBounds="true" preserveRatio="true" />
-      <Button fx:id="btnAtzera" layoutX="393.0" layoutY="450.0" mnemonicParsing="false" onAction="#onClick" text="Atzera" />
+      <Label layoutX="95.0" layoutY="391.0" text="Irudia:" />
+      <ImageView fx:id="imgIrudia" fitHeight="135.0" fitWidth="184.0" layoutX="179.0" layoutY="331.0" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="btnAtzera" layoutX="390.0" layoutY="496.0" mnemonicParsing="false" onAction="#onClick" styleClass="danger" stylesheets="@bootstrap3.css" text="Atzera" />
    </children>
 </AnchorPane>

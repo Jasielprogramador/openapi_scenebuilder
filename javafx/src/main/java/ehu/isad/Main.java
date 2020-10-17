@@ -38,11 +38,7 @@ public class Main extends Application {
 
 
     Book b=(Book)liburuKud.comboZerbitzua.getValue();
-    System.out.println("hskaflkjshafdsdf");
-    System.out.println(b);
-    System.out.println(b.isbn);
-    readFromUrl(b.isbn);
-    System.out.println(this.book.getTitle());
+
     stage.setScene(sceneLiburuak);
     stage.show();
   }

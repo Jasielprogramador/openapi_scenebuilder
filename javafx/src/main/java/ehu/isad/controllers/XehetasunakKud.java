@@ -16,8 +16,10 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.util.StringConverter;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ResourceBundle;
@@ -66,10 +68,10 @@ public class XehetasunakKud implements Initializable {
     }
 
     public void putInfo(Book b) throws IOException {
-        lblIzenburua.setText(b.getTitle());
+        lblIzenburua.setText(b.getDetails().getTitle());
         lblOrriKop.setText(Integer.toString(b.getDetails().getNumber_of_pages()));
         lblArgitaletxea.setText(b.getDetails().getPublishers()[0]);
-        imgIrudia.setImage(createImage(b.getThumbnail_url()));
+        imgIrudia.setImage(createImage(b.getThumbnail_url().replace("S","M")));
     }
     public void setMainApp(Main main) {
         this.mainApp = main;
