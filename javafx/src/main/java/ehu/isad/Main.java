@@ -1,15 +1,20 @@
 package ehu.isad;
 
+import com.google.gson.Gson;
 import ehu.isad.controllers.LiburuKud;
 import ehu.isad.controllers.XehetasunakKud;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
 
 public class Main extends Application {
 
@@ -18,9 +23,9 @@ public class Main extends Application {
   private Stage stage;
   private Scene sceneLiburuak;
   private Scene sceneXehetasunak;
-  public LiburuKud LiburuKud;
+  public LiburuKud liburuKud;
   public XehetasunakKud xehetasunakKud;
-  public Label label;
+  private Book book;
 
 
 
@@ -31,24 +36,28 @@ public class Main extends Application {
     stage = primaryStage;
     pantailakKargatu();
 
+
+    Book b=(Book)liburuKud.comboZerbitzua.getValue();
+    System.out.println("hskaflkjshafdsdf");
+    System.out.println(b);
+    System.out.println(b.isbn);
+    readFromUrl(b.isbn);
+    System.out.println(this.book.getTitle());
     stage.setScene(sceneLiburuak);
     stage.show();
   }
 
-/*  public void changeScene(String fxml) throws IOException {
-      Parent pane = FXMLLoader.load(getClass().getResource(fxml));
-
-      stage.getScene().setRoot(pane);
-  }*/
 
   public void mainErakutsi(){
-    stage.setScene(sceneXehetasunak);
+    stage.setScene(sceneLiburuak);
     stage.show();
   }
 
-  public void xehetasunakErakutsi(){
-
-
+  public void xehetasunakErakutsi() throws IOException {
+    liburuaLortu();
+    xehetasunakKud.putInfo(this.book);
+    stage.setScene(sceneXehetasunak);
+    stage.show();
   }
 
 
@@ -56,8 +65,8 @@ public class Main extends Application {
 
     FXMLLoader loaderLiburu = new FXMLLoader(getClass().getResource("/Liburuak.fxml"));
     liburuUI = (Parent) loaderLiburu.load();
-    LiburuKud = loaderLiburu.getController();
-    LiburuKud.setMainApp(this);
+    liburuKud = loaderLiburu.getController();
+    liburuKud.setMainApp(this);
     sceneLiburuak=new Scene(liburuUI);
 
 
@@ -66,6 +75,39 @@ public class Main extends Application {
     xehetasunakKud= loaderXehetasun.getController();
     xehetasunakKud.setMainApp(this);
     sceneXehetasunak=new Scene(xehetasunUI);
+
+  }
+
+  //Liburu osoa ematen dizu
+  public void liburuaLortu() throws IOException {
+    Book b=(Book)liburuKud.comboZerbitzua.getValue();
+    readFromUrl(b.isbn);
+  }
+
+
+
+  public void readFromUrl(String isbn) throws IOException {
+    URL api;
+    String inputLine = "";
+
+    try {
+      api = new URL(" https://openlibrary.org/api/books?bibkeys=ISBN:"+isbn+"&jscmd=details&format=json");
+      URLConnection yc = api.openConnection();
+      BufferedReader in = new BufferedReader(new InputStreamReader(yc.getInputStream()));
+      inputLine = in.readLine();
+
+      String[] zatiak = inputLine.split("ISBN:"+isbn+"\":");
+      inputLine = zatiak[1].substring(0, zatiak[1].length()-1);
+
+      Gson gson = new Gson();
+      this.book = gson.fromJson(inputLine, Book.class);
+
+      in.close();
+
+    }
+    catch (MalformedURLException e){
+      e.printStackTrace();
+    }
 
   }
 

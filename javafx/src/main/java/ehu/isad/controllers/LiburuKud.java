@@ -2,7 +2,6 @@ package ehu.isad.controllers;
 
 import ehu.isad.Book;
 import ehu.isad.Main;
-import ehu.isad.utils.Sarea;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -20,7 +19,6 @@ public class LiburuKud implements Initializable {
 
     // Reference to the main application.
     private Main mainApp;
-    private Sarea sarea;
 
 
     @FXML
@@ -33,8 +31,7 @@ public class LiburuKud implements Initializable {
 
     @FXML
     public void onClick(ActionEvent actionEvent) throws IOException {
-
-        mainApp.mainErakutsi();
+        mainApp.xehetasunakErakutsi();
     }
 
     @Override
@@ -67,11 +64,7 @@ public class LiburuKud implements Initializable {
         });
     }
 
-    public Book liburuaLortu() throws IOException {
-        Book book=(Book)comboZerbitzua.getValue();
-        Book liburua=sarea.readFromUrl(book.getIsbn());
-        return liburua;
-    }
+
 
 
 

@@ -2,7 +2,6 @@ package ehu.isad.controllers;
 
 import ehu.isad.Book;
 import ehu.isad.Main;
-import ehu.isad.utils.Sarea;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -26,7 +25,6 @@ import java.util.ResourceBundle;
 public class XehetasunakKud implements Initializable {
 
     private Main mainApp;
-    private Sarea sarea;
 
 
 
@@ -48,7 +46,7 @@ public class XehetasunakKud implements Initializable {
 
     @FXML
     public void onClick(ActionEvent actionEvent) throws IOException {
-        //Book book=
+        mainApp.mainErakutsi();
     }
 
 
@@ -64,15 +62,15 @@ public class XehetasunakKud implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        try {
-            Book liburua=mainApp.LiburuKud.liburuaLortu();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
 
     }
 
+    public void putInfo(Book b) throws IOException {
+        lblIzenburua.setText(b.getTitle());
+        lblOrriKop.setText(Integer.toString(b.getDetails().getNumber_of_pages()));
+        lblArgitaletxea.setText(b.getDetails().getPublishers()[0]);
+        imgIrudia.setImage(createImage(b.getThumbnail_url()));
+    }
     public void setMainApp(Main main) {
         this.mainApp = main;
     }
